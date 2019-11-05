@@ -1,0 +1,36 @@
+type Query {
+    getAuthorById(id: ID!): Author
+}
+
+# Author(著者)定義
+type Author {
+  id: ID!
+  name: String!
+  books: [Book]
+}
+
+# Book(本)定義
+type Book {
+  id: ID!
+  name: String!
+}
+
+type Mutation {
+    registAuthor(name: String!): RegistAuthorResponse
+    registBook(authorId: ID!, name: String!): RegistBookResponse
+}
+
+# Authorの登録結果ResponseのType定義
+type RegistAuthorResponse {
+  name: String!,
+  isRegist: Boolean!,
+  errorMessage: String
+}
+
+# Bookの登録結果ResponseのType定義
+type RegistBookResponse {
+    authorId: ID!,
+    name: String!,
+    isRegist: Boolean!,
+    errorMessage: String
+}
